@@ -12,8 +12,7 @@ export const personalInfo = {
 
   resumeLink: "#",
 
-  photo:
-    "https://i.ibb.co.com/359bYcJK/50-AAA56-C-CD4-C-447-B-A5-B1-07-F2601-D4803.png",
+  photo: "https://i.ibb.co.com/RTMkzWQ2/Profile-Photo.jpg",
 };
 
 export const socialLinks = {
