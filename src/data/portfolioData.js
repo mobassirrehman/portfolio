@@ -10,7 +10,8 @@ export const personalInfo = {
   whatsapp: "+880 1601700902",
   location: "Chattagram, Bangladesh",
 
-  resumeLink: "#",
+  resumeLink:
+    "https://drive.google.com/file/d/1FrCq3vNm4CtuYbbJUWjFQxTgG3sqh5bE/view?usp=sharing",
 
   photo: "https://i.ibb.co.com/RTMkzWQ2/Profile-Photo.jpg",
 };
