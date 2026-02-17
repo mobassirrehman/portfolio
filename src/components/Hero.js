@@ -16,11 +16,11 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden"
+      className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden bg-white dark:bg-[#080808]"
     >
-      {/* Background Text */}
+      {/* Background Text - Metallic Ghost */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none select-none">
-        <span className="text-[18vw] leading-none text-outline opacity-50">
+        <span className="text-[20vw] leading-none text-outline opacity-40 dark:opacity-20">
           HELLO
         </span>
       </div>
@@ -35,13 +35,12 @@ export default function Hero() {
         >
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-zinc-500 dark:text-zinc-400 mb-4 tracking-wide uppercase">
-              Full Stack Developer
+              Mern Stack Developer
             </h2>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white leading-[0.9]">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-zinc-100 leading-[0.9]">
               {personalInfo.firstName} <br />
-              <span className="text-zinc-400 dark:text-zinc-600">
-                {personalInfo.lastName}
-              </span>
+              {/* THE LIQUID TITANIUM EFFECT */}
+              <span className="text-titanium">{personalInfo.lastName}</span>
             </h1>
           </div>
 
@@ -50,7 +49,7 @@ export default function Hero() {
             web applications.
           </p>
 
-          {/* Buttons */}
+          {/* Buttons (Uses titanium style from globals) */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-4">
             <a
               href={personalInfo.resumeLink}
@@ -66,7 +65,7 @@ export default function Hero() {
           </div>
 
           {/* Socials */}
-          <div className="flex justify-center lg:justify-start gap-4 mt-4">
+          <div className="flex justify-center lg:justify-start gap-4 mt-6">
             {[
               { icon: Github, url: socialLinks.github },
               { icon: Linkedin, url: socialLinks.linkedin },
@@ -80,16 +79,16 @@ export default function Hero() {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+                    className="p-3 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 shadow-sm hover:shadow-md"
                   >
-                    <item.icon size={20} />
+                    <item.icon size={22} />
                   </a>
                 )
             )}
           </div>
         </motion.div>
 
-        {/* Image Section - Monochrome Card */}
+        {/* Image Section - The "Hypelron" Metal Frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -97,11 +96,11 @@ export default function Hero() {
           className="lg:col-span-5 order-1 lg:order-2 flex justify-center"
         >
           <div className="relative w-[300px] h-[380px] md:w-[400px] md:h-[500px] group">
-            {/* Depth Shadow */}
-            <div className="absolute inset-0 rounded-[2rem] bg-zinc-200 dark:bg-zinc-800 translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+            {/* 1. Metallic Gradient Border (The key "Titanium" feature) */}
+            <div className="absolute -inset-1 rounded-[2.2rem] bg-gradient-to-tr from-zinc-300 via-white to-zinc-400 dark:from-zinc-700 dark:via-zinc-500 dark:to-zinc-800 opacity-80 blur-sm group-hover:opacity-100 transition-opacity duration-700" />
 
-            {/* Image Container */}
-            <div className="relative w-full h-full rounded-[2rem] bg-zinc-100 dark:bg-zinc-900 overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl">
+            {/* 2. Image Container */}
+            <div className="relative w-full h-full rounded-[2rem] bg-zinc-100 dark:bg-[#121212] overflow-hidden border border-white/50 dark:border-white/10 shadow-2xl">
               <Image
                 src={personalInfo.photo}
                 alt={personalInfo.name}
@@ -110,6 +109,9 @@ export default function Hero() {
                 priority
                 unoptimized
               />
+
+              {/* 3. Subtle Glass Sheen Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-overlay" />
             </div>
           </div>
         </motion.div>

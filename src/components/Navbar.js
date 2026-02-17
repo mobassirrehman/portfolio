@@ -66,7 +66,7 @@ export default function Navbar() {
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <Link href="#contact" className="btn-primary text-sm py-2.5 px-6">
-            Let's Talk
+            Let&apos;s Talk
           </Link>
         </div>
 
@@ -112,7 +112,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="btn-primary w-full max-w-xs"
               >
-                Let's Talk
+                Let&apos;s Talk
               </Link>
             </div>
           </motion.div>

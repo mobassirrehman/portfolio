@@ -9,7 +9,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Mobassir Rehman | Full Stack Developer",
+  title: "Mobassir Rehman | Mern Stack Developer",
   description: "MERN Stack Developer based in Bangladesh.",
 };
 
