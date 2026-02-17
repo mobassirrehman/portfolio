@@ -7,8 +7,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ProjectPage({ params }) {
-  const { id } = params;
+export default async function ProjectPage({ params }) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+
   const project = projects.find((p) => p.id === id);
 
   return <ProjectDetailClient project={project} />;

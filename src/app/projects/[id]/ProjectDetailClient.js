@@ -5,26 +5,27 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  CheckCircle2,
+  AlertTriangle,
+  Zap,
+  Layers,
+  Code2,
+} from "lucide-react";
 
 export default function ProjectDetailClient({ project }) {
   if (!project) {
     return (
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "var(--color-bg)",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <h1
-            style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "1rem" }}
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black text-zinc-900 dark:text-white">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
+          <Link
+            href="/#projects"
+            className="text-zinc-500 hover:text-black dark:hover:text-white underline underline-offset-4"
           >
-            Project Not Found
-          </h1>
-          <Link href="/#projects" style={{ color: "#10b981" }}>
             ← Back to Projects
           </Link>
         </div>
@@ -35,170 +36,83 @@ export default function ProjectDetailClient({ project }) {
   return (
     <>
       <Navbar />
-      <main
-        style={{
-          minHeight: "100vh",
-          paddingTop: "7rem",
-          paddingBottom: "4rem",
-          background: "var(--color-bg)",
-        }}
-      >
-        <div className="section-container">
+      <main className="min-h-screen pt-32 pb-20 bg-white dark:bg-black">
+        <div className="section-container max-w-5xl">
+          {/* Back Link */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
             <Link
               href="/#projects"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                color: "var(--color-text-muted)",
-                textDecoration: "none",
-                marginBottom: "2rem",
-                fontSize: "0.9rem",
-                transition: "color 0.3s ease",
-              }}
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors mb-8 group"
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="19" x2="5" y1="12" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
-              </svg>
+              <ArrowLeft
+                size={16}
+                className="group-hover:-translate-x-1 transition-transform"
+              />
               Back to Projects
             </Link>
           </motion.div>
 
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ marginBottom: "2rem" }}
+            className="mb-12"
           >
-            <h1
-              style={{
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
-                fontWeight: 700,
-                marginBottom: "1rem",
-                color: "var(--color-text)",
-              }}
-            >
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-900 dark:text-white mb-6">
               {project.name}
             </h1>
-            <p
-              style={{
-                fontSize: "1.1rem",
-                color: "var(--color-text-secondary)",
-                maxWidth: "800px",
-                lineHeight: 1.7,
-              }}
-            >
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
               {project.fullDescription}
             </p>
           </motion.div>
 
+          {/* Hero Image */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            style={{
-              position: "relative",
-              height: "clamp(250px, 50vw, 500px)",
-              borderRadius: "24px",
-              overflow: "hidden",
-              marginBottom: "3rem",
-              background: "var(--color-bg-secondary)",
-            }}
+            className="relative w-full aspect-video rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl mb-16 group"
           >
             <Image
               src={project.image}
               alt={project.name}
               fill
-              style={{ objectFit: "cover" }}
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              sizes="100vw"
+              priority
               unoptimized
             />
           </motion.div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "2rem",
-            }}
-            className="lg:grid-cols-3"
-          >
-            <div style={{ gridColumn: "span 1" }} className="lg:col-span-2">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-20">
+            {/* Main Content (Left Column) */}
+            <div className="lg:col-span-2 space-y-12">
+              {/* Features */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="glass-card"
-                style={{ padding: "2rem", marginBottom: "1.5rem" }}
               >
-                <h2
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: 600,
-                    marginBottom: "1.25rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                    color: "var(--color-text)",
-                  }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="2"
-                  >
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                    <polyline points="22 4 12 14.01 9 11.01" />
-                  </svg>
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-3">
+                  <Layers className="text-zinc-400" size={24} />
                   Key Features
                 </h2>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
-                >
+                <ul className="grid gap-4">
                   {project.features.map((feature, index) => (
                     <li
                       key={index}
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "0.75rem",
-                      }}
+                      className="flex items-start gap-3 p-4 rounded-xl bg-zinc-50 dark:bg-[#0c0c0c] border border-zinc-200 dark:border-zinc-800"
                     >
-                      <span
-                        style={{
-                          width: "6px",
-                          height: "6px",
-                          borderRadius: "50%",
-                          background: "#10b981",
-                          marginTop: "0.5rem",
-                          flexShrink: 0,
-                        }}
+                      <CheckCircle2
+                        className="text-zinc-900 dark:text-white shrink-0 mt-0.5"
+                        size={20}
                       />
-                      <span
-                        style={{
-                          color: "var(--color-text-secondary)",
-                          lineHeight: 1.6,
-                        }}
-                      >
+                      <span className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
                         {feature}
                       </span>
                     </li>
@@ -206,123 +120,54 @@ export default function ProjectDetailClient({ project }) {
                 </ul>
               </motion.div>
 
+              {/* Challenges */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="glass-card"
-                style={{ padding: "2rem", marginBottom: "1.5rem" }}
               >
-                <h2
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: 600,
-                    marginBottom: "1rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                    color: "var(--color-text)",
-                  }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#f59e0b"
-                    strokeWidth="2"
-                  >
-                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                    <line x1="12" x2="12" y1="9" y2="13" />
-                    <line x1="12" x2="12.01" y1="17" y2="17" />
-                  </svg>
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-3">
+                  <AlertTriangle className="text-zinc-400" size={24} />
                   Challenges Faced
                 </h2>
-                <p
-                  style={{
-                    color: "var(--color-text-secondary)",
-                    lineHeight: 1.8,
-                  }}
-                >
+                <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-[#0c0c0c] border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 leading-relaxed">
                   {project.challenges}
-                </p>
+                </div>
               </motion.div>
 
+              {/* Improvements */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="glass-card"
-                style={{ padding: "2rem" }}
               >
-                <h2
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: 600,
-                    marginBottom: "1rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                    color: "var(--color-text)",
-                  }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#06b6d4"
-                    strokeWidth="2"
-                  >
-                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
-                    <path d="M9 18h6" />
-                    <path d="M10 22h4" />
-                  </svg>
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-3">
+                  <Zap className="text-zinc-400" size={24} />
                   Future Improvements
                 </h2>
-                <p
-                  style={{
-                    color: "var(--color-text-secondary)",
-                    lineHeight: 1.8,
-                  }}
-                >
+                <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-[#0c0c0c] border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 leading-relaxed">
                   {project.improvements}
-                </p>
+                </div>
               </motion.div>
             </div>
 
-            <div>
+            {/* Sidebar (Right Column) */}
+            <div className="space-y-8">
+              {/* Tech Stack */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="glass-card"
-                style={{ padding: "1.5rem", marginBottom: "1.5rem" }}
+                className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0c] border border-zinc-200 dark:border-zinc-800 shadow-sm"
               >
-                <h3
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: 600,
-                    marginBottom: "1rem",
-                    color: "var(--color-text)",
-                  }}
-                >
-                  Tech Stack
+                <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-2">
+                  <Code2 size={16} /> Tech Stack
                 </h3>
-                <div
-                  style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
-                >
+                <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      style={{
-                        padding: "0.5rem 1rem",
-                        borderRadius: "20px",
-                        background: "rgba(16, 185, 129, 0.1)",
-                        fontSize: "0.85rem",
-                        color: "#10b981",
-                        fontWeight: 500,
-                      }}
+                      className="px-3 py-1.5 text-sm font-semibold rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-200"
                     >
                       {tech}
                     </span>
@@ -330,119 +175,52 @@ export default function ProjectDetailClient({ project }) {
                 </div>
               </motion.div>
 
+              {/* Action Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="glass-card"
-                style={{ padding: "1.5rem", marginBottom: "1.5rem" }}
+                className="space-y-4"
               >
-                <h3
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: 600,
-                    marginBottom: "1rem",
-                    color: "var(--color-text)",
-                  }}
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full justify-center"
                 >
-                  Project Links
-                </h3>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
+                  View Live <ExternalLink size={18} />
+                </a>
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary w-full justify-center"
                 >
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                    style={{ justifyContent: "center", textDecoration: "none" }}
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" x2="21" y1="14" y2="3" />
-                    </svg>
-                    View Live
-                  </a>
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary"
-                    style={{ justifyContent: "center", textDecoration: "none" }}
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                    </svg>
-                    Source Code
-                  </a>
-                </div>
+                  Source Code <Github size={18} />
+                </a>
               </motion.div>
 
+              {/* CTA Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                style={{
-                  padding: "1.5rem",
-                  borderRadius: "20px",
-                  background:
-                    "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2))",
-                  border: "1px solid rgba(16, 185, 129, 0.3)",
-                }}
+                className="p-6 rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-black overflow-hidden relative"
               >
-                <h3
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: 600,
-                    marginBottom: "0.5rem",
-                    color: "var(--color-text)",
-                  }}
-                >
-                  Interested in working together?
-                </h3>
-                <p
-                  style={{
-                    fontSize: "0.9rem",
-                    color: "var(--color-text-secondary)",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  Let&apos;s discuss your project!
-                </p>
-                <Link
-                  href="/#contact"
-                  style={{
-                    display: "inline-block",
-                    padding: "0.625rem 1.25rem",
-                    borderRadius: "10px",
-                    background: "#10b981",
-                    color: "white",
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    textDecoration: "none",
-                  }}
-                >
-                  Get In Touch
-                </Link>
+                <div className="relative z-10">
+                  <h3 className="font-bold text-lg mb-2">
+                    Build something like this?
+                  </h3>
+                  <p className="text-zinc-400 dark:text-zinc-600 text-sm mb-6">
+                    I&apos;m available for freelance projects and full-time roles.
+                  </p>
+                  <Link
+                    href="/#contact"
+                    className="inline-block w-full py-3 rounded-xl bg-white dark:bg-black text-black dark:text-white font-bold text-center hover:opacity-90 transition-opacity"
+                  >
+                    Contact Me
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </div>
