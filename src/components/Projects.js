@@ -3,15 +3,25 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { projects } from "@/data/portfolioData";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github, Code2 } from "lucide-react";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 bg-zinc-50 dark:bg-[#050505]">
+    <section
+      id="projects"
+      className="py-24 bg-white dark:bg-[#050505] overflow-hidden border-t border-zinc-100 dark:border-zinc-900"
+    >
       <div className="section-container">
-        <h2 className="text-4xl md:text-6xl font-bold mb-20 text-center">
-          Selected <span className="text-gradient">Works</span>
-        </h2>
+        {/* Header */}
+        <div className="mb-24 space-y-6 text-center md:text-left">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
+            Selected <span className="text-titanium">Works</span>
+          </h2>
+          <p className="text-zinc-500 dark:text-zinc-400 max-w-lg text-lg leading-relaxed">
+            Crafting digital experiences with a focus on performance,
+            architecture, and premium design.
+          </p>
+        </div>
 
         <div className="flex flex-col gap-32">
           {projects.map((project, index) => (
@@ -20,66 +30,75 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7 }}
-              className={`flex flex-col lg:flex-row gap-12 items-center ${
+              transition={{ duration: 0.6 }}
+              className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${
                 index % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}
             >
-              {/* 1. The Showcase Image (Big & Clean) */}
+              {/* 1. Project Showcase */}
               <div className="flex-1 w-full relative group">
-                <div className="absolute inset-0 bg-teal-500/10 dark:bg-teal-500/5 rounded-3xl transform rotate-3 group-hover:rotate-1 transition-transform duration-500" />
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-white/10 aspect-[16/10] bg-zinc-900">
+                {/* Metallic Offset Border */}
+                <div className="absolute inset-0 border-2 border-zinc-200 dark:border-zinc-800 rounded-3xl transform translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+
+                <div className="relative rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 aspect-[16/10] border border-zinc-200 dark:border-zinc-800 shadow-2xl">
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
               </div>
 
-              {/* 2. The Details (Minimalist) */}
-              <div className="flex-1 flex flex-col gap-6">
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 uppercase tracking-wider">
+              {/* 2. Project Details */}
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800">
+                    <Code2 size={20} />
+                  </span>
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-500">
                     Featured Project
                   </span>
                 </div>
 
-                <h3 className="text-4xl font-bold text-zinc-900 dark:text-white">
+                <h3 className="text-4xl font-bold text-zinc-900 dark:text-white mb-6">
                   {project.name}
                 </h3>
 
-                <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8">
                   {project.fullDescription}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2.5 mb-10">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="text-sm font-medium text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 rounded-lg"
+                      className="px-4 py-2 text-xs font-bold uppercase tracking-wide rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex gap-4 pt-4">
+                {/* Links - Using the new metallic buttons */}
+                <div className="flex flex-wrap gap-4">
                   <a
                     href={project.liveLink}
                     target="_blank"
-                    className="flex items-center gap-2 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold transition-transform hover:-translate-y-1"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
                   >
-                    Visit Site <ArrowUpRight size={18} />
+                    View Live <ArrowUpRight size={18} />
                   </a>
                   <a
                     href={project.githubLink}
                     target="_blank"
-                    className="flex items-center gap-2 px-6 py-3 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white rounded-full font-bold hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
                   >
-                    <Github size={18} /> Code
+                    <Github size={18} /> Source
                   </a>
                 </div>
               </div>
