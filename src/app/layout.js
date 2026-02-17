@@ -1,38 +1,23 @@
-import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/Navbar";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+});
 
 export const metadata = {
-  title: "Mobassir Rehman | MERN Stack Developer",
-  description:
-    "Portfolio of Mobassir Rehman - A MERN Stack Developer from Bangladesh specializing in React, Next.js, Node.js, and MongoDB.",
-  keywords: [
-    "MERN Stack",
-    "React",
-    "Next.js",
-    "Node.js",
-    "MongoDB",
-    "Web Developer",
-    "Frontend Developer",
-    "Bangladesh",
-  ],
-  authors: [{ name: "Mobassir Rehman" }],
-  openGraph: {
-    title: "Mobassir Rehman | MERN Stack Developer",
-    description:
-      "Portfolio of Mobassir Rehman - A MERN Stack Developer from Bangladesh",
-    type: "website",
-  },
+  title: "Mobassir Rehman | Full Stack Developer",
+  description: "MERN Stack Developer based in Bangladesh.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
-        <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
-        </ThemeProvider>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${jakarta.variable} font-sans antialiased`}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

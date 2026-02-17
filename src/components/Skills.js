@@ -1,264 +1,69 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { skills } from "@/data/portfolioData";
 
-const categories = [
-  { key: "frontend", title: "Frontend", icon: "🎨", color: "#10b981" },
-  { key: "backend", title: "Backend", icon: "⚙️", color: "#14b8a6" },
-  { key: "tools", title: "Tools", icon: "🛠️", color: "#06b6d4" },
+const row1 = [
+  ...skills.frontend,
+  ...skills.tools,
+  ...skills.frontend,
+  ...skills.tools,
+];
+const row2 = [
+  ...skills.backend,
+  ...skills.tools,
+  ...skills.backend,
+  ...skills.tools,
 ];
 
-function SkillBar({ name, level, delay, isInView }) {
-  return (
-    <div style={{ marginBottom: "1.25rem" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "0.5rem",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "0.875rem",
-            fontWeight: 500,
-            color: "var(--color-text)",
-          }}
-        >
-          {name}
-        </span>
-        <span
-          style={{
-            fontSize: "0.875rem",
-            color: "var(--color-text-muted)",
-          }}
-        >
-          {level}%
-        </span>
-      </div>
-      <div className="skill-bar">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1.2, delay: delay, ease: "easeOut" }}
-          className="skill-bar-fill"
-        />
-      </div>
-    </div>
-  );
-}
+const SkillTag = ({ name }) => (
+  <div className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-full shadow-sm whitespace-nowrap transition-all hover:border-black dark:hover:border-white cursor-default">
+    {/* Monochrome Dot */}
+    <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600" />
+    <span className="font-bold text-zinc-900 dark:text-white text-sm tracking-wide">
+      {name}
+    </span>
+  </div>
+);
 
 export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const additionalSkills = [
-    "React Hook Form",
-    "TanStack Query",
-    "Axios",
-    "JWT",
-    "Recharts",
-    "SweetAlert2",
-    "React Router",
-    "Context API",
-  ];
-
   return (
     <section
       id="skills"
-      ref={ref}
-      style={{
-        padding: "6rem 0",
-        background: "var(--color-bg)",
-        position: "relative",
-      }}
+      className="py-24 overflow-hidden relative bg-white dark:bg-black border-y border-zinc-100 dark:border-zinc-900"
     >
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: "0",
-          width: "400px",
-          height: "400px",
-          background:
-            "radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%)",
-          borderRadius: "50%",
-          filter: "blur(60px)",
-          transform: "translateY(-50%)",
-          pointerEvents: "none",
-        }}
-      />
+      <div className="section-container mb-16 text-center">
+        <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-zinc-900 dark:text-white">
+          Technical Arsenal
+        </h2>
+        <p className="text-zinc-500 dark:text-zinc-400 max-w-lg mx-auto">
+          The technologies I use to build scalable, high-performance
+          applications.
+        </p>
+      </div>
 
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          style={{
-            textAlign: "center",
-            marginBottom: "4rem",
-            position: "relative",
-          }}
-        >
-          <span
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontSize: "clamp(4rem, 12vw, 10rem)",
-              fontWeight: 900,
-              color: "transparent",
-              WebkitTextStroke: "1px rgba(16, 185, 129, 0.08)",
-              whiteSpace: "nowrap",
-              pointerEvents: "none",
-            }}
-          >
-            Skills
-          </span>
-          <h2
-            style={{
-              position: "relative",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              fontWeight: 700,
-              marginBottom: "1rem",
-            }}
-          >
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <p
-            style={{
-              color: "var(--color-text-muted)",
-              maxWidth: "600px",
-              margin: "0 auto",
-            }}
-          >
-            Technologies and tools I work with
-          </p>
-          <div
-            style={{
-              width: "60px",
-              height: "4px",
-              background: "linear-gradient(90deg, #10b981, #06b6d4)",
-              borderRadius: "2px",
-              margin: "1rem auto 0",
-            }}
-          />
-        </motion.div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "2rem",
-            marginBottom: "3rem",
-          }}
-        >
-          {categories.map((category, catIndex) => (
-            <motion.div
-              key={category.key}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: catIndex * 0.15 }}
-              className="glass-card card-hover"
-              style={{ padding: "2rem" }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "1.75rem",
-                    width: "50px",
-                    height: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "12px",
-                    background: `${category.color}15`,
-                  }}
-                >
-                  {category.icon}
-                </span>
-                <h3
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: 600,
-                    color: "var(--color-text)",
-                  }}
-                >
-                  {category.title}
-                </h3>
-              </div>
-
-              {skills[category.key].map((skill, index) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={catIndex * 0.15 + index * 0.1}
-                  isInView={isInView}
-                />
-              ))}
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          style={{ textAlign: "center" }}
-        >
-          <h4
-            style={{
-              fontSize: "1rem",
-              fontWeight: 500,
-              color: "var(--color-text-secondary)",
-              marginBottom: "1.25rem",
-            }}
-          >
-            Also familiar with:
-          </h4>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "0.75rem",
-            }}
-          >
-            {additionalSkills.map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.8 + index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                style={{
-                  padding: "0.5rem 1rem",
-                  borderRadius: "20px",
-                  background: "var(--color-bg-secondary)",
-                  border: "1px solid var(--color-border)",
-                  fontSize: "0.875rem",
-                  color: "var(--color-text-muted)",
-                  cursor: "default",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                {skill}
-              </motion.span>
+      <div className="flex flex-col gap-6 w-full">
+        {/* Row 1: Moves Left */}
+        <div className="flex w-full overflow-hidden">
+          <div className="flex gap-4 animate-scroll-left hover:[animation-play-state:paused] w-max">
+            {row1.map((skill, i) => (
+              <SkillTag key={`r1-${i}`} name={skill.name} />
             ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* Row 2: Moves Right */}
+        <div className="flex w-full overflow-hidden">
+          <div className="flex gap-4 animate-scroll-right hover:[animation-play-state:paused] w-max">
+            {row2.map((skill, i) => (
+              <SkillTag key={`r2-${i}`} name={skill.name} />
+            ))}
+          </div>
+        </div>
       </div>
+
+      {/* Edge Fading Masks */}
+      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-black to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
