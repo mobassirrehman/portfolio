@@ -43,13 +43,13 @@ export default function Projects() {
                   <div className="absolute inset-0 border-2 border-zinc-200 dark:border-zinc-800 rounded-3xl transform translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
 
                   <div className="relative rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 aspect-[16/10] border border-zinc-200 dark:border-zinc-800 shadow-2xl">
-                    <Image
+                    {/* <Image
                       src={project.image}
                       alt={project.name}
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                    />
+                    /> */}
 
                     {/* Hover Overlay Text */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

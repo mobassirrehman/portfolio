@@ -93,7 +93,8 @@ export const projects = [
       "A full-stack Bengali grocery platform with Next.js 16, bilingual support, and persistent cart.",
     fullDescription:
       "HatBari is a robust e-commerce platform designed for the Bangladeshi market, bridging the gap between local farmers and consumers. Built with the latest Next.js 16 App Router, it features a completely bilingual interface (English + Bengali) and a persistent cart system using Zustand. The application prioritizes security with NextAuth v5, Zod server-side validation, and regex injection protection.",
-    image: "/images/hatbari-home.jpg", // ⚠️ Make sure to rename your screenshot and place it here
+    image:
+      "https://res.cloudinary.com/dgo7un75z/image/upload/v1771371314/Screenshot_2026-02-18_at_5.33.07_AM_bbyje2.png",
     techStack: [
       "Next.js 16",
       "React 19",
