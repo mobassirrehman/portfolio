@@ -7,10 +7,10 @@ import { Menu, X, Sun, Moon, Hexagon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/#about" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Projects", href: "/#projects" },
 ];
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="section-container flex items-center justify-between">
         {/* Logo - Pure Monochrome */}
         <Link
-          href="#home"
+          href="/"
           className="text-2xl font-extrabold tracking-tight flex items-center gap-2 text-zinc-900 dark:text-white group"
         >
           <Hexagon
@@ -65,7 +65,7 @@ export default function Navbar() {
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <Link href="#contact" className="btn-primary text-sm py-2.5 px-6">
+          <Link href="/#contact" className="btn-primary text-sm py-2.5 px-6">
             Let&apos;s Talk
           </Link>
         </div>
@@ -108,7 +108,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="#contact"
+                href="/#contact"
                 onClick={() => setIsOpen(false)}
                 className="btn-primary w-full max-w-xs"
               >
