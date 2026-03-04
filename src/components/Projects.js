@@ -39,23 +39,38 @@ export default function Projects() {
               {/* 1. Project Showcase (Image) */}
               <div className="flex-1 w-full relative group cursor-pointer">
                 <Link href={`/projects/${project.id}`}>
-                  {/* Metallic Offset Border */}
-                  <div className="absolute inset-0 border-2 border-zinc-200 dark:border-zinc-800 rounded-3xl transform translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+                  {/* Metallic Offset Shadow / Border */}
+                  <div className="absolute inset-0 border-2 border-zinc-200 dark:border-zinc-800 rounded-3xl transform translate-x-4 translate-y-4 -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
 
-                  <div className="relative rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 aspect-[16/10] border border-zinc-200 dark:border-zinc-800 shadow-2xl">
-                    {/* <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    /> */}
+                  {/* Main Image Container */}
+                  <div className="relative rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col">
+                    {/* Fake Browser Top Bar (Adds the "Stunning" factor) */}
+                    <div className="w-full h-8 bg-zinc-200/50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 flex items-center px-4 gap-1.5 backdrop-blur-sm z-10">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400/80"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></div>
+                    </div>
 
-                    {/* Hover Overlay Text */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="px-6 py-3 bg-white text-black rounded-full font-bold text-sm">
-                        View Case Study
-                      </span>
+                    {/* Image Wrapper */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={index === 0} // Loads the first image instantly
+                      />
+
+                      {/* Subtle inner gradient to make the image blend better */}
+                      <div className="absolute inset-0 ring-1 ring-inset ring-black/10 dark:ring-white/10 rounded-b-3xl pointer-events-none" />
+
+                      {/* Hover Overlay Text */}
+                      <div className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                        <span className="px-6 py-3 bg-white text-black rounded-full font-bold text-sm shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                          View Case Study
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </Link>

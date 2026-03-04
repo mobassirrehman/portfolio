@@ -9,8 +9,9 @@ export const personalInfo = {
   whatsapp: "+880 1601700902",
   location: "Chattagram, Bangladesh",
   resumeLink:
-    "https://drive.google.com/file/d/1FrCq3vNm4CtuYbbJUWjFQxTgG3sqh5bE/view?usp=sharing",
-  photo: "https://i.ibb.co.com/RTMkzWQ2/Profile-Photo.jpg",
+    "https://drive.google.com/file/d/1VJPCyaMOGiVySp8gso6P7E3YeMgbzxPz/view?usp=sharing",
+  photo:
+    "https://res.cloudinary.com/dgo7un75z/image/upload/v1771178757/Profile_Photo_hgkzgl.jpg",
 };
 
 export const socialLinks = {
@@ -85,7 +86,7 @@ export const experience = [
 ];
 
 export const projects = [
-  // 1. HatBari (Top Priority)
+  // 1. HatBari
   {
     id: "hatbari",
     name: "HatBari",
@@ -127,7 +128,8 @@ export const projects = [
       "A contest management platform with multiple user roles and Stripe payment integration.",
     fullDescription:
       "ContestHub enables organizers to create competitions while participants can browse and join. Features three user roles with dedicated dashboards and Stripe integration for seamless payment processing.",
-    image: "https://i.ibb.co/JW39skHZ/Compete-Create.png",
+    image:
+      "https://res.cloudinary.com/dgo7un75z/image/upload/v1772621440/Screenshot_2026-03-04_at_4.50.28_PM_shvd0n.png",
     techStack: ["React", "Node.js", "Express", "MongoDB", "Stripe", "JWT"],
     liveLink: "https://contesthub-contest-platform.netlify.app",
     githubLink: "https://github.com/mobassirrehman/contestHub-client.git",
@@ -144,7 +146,7 @@ export const projects = [
       "Adding real-time notifications, a chat system for participants, analytics dashboards for organizers, and team-based competitions.",
   },
 
-  // 3. The Book Haven (Moved to 3rd)
+  // 3. The Book Haven
   {
     id: "the-book-haven",
     name: "The Book Haven",
@@ -152,7 +154,8 @@ export const projects = [
       "A comprehensive digital library management system with modern UI and full CRUD operations.",
     fullDescription:
       "The Book Haven is a production-ready digital library management system that allows users to browse, borrow, and manage books efficiently. Built with the MERN stack, it features a clean, intuitive interface and robust backend logic.",
-    image: "https://i.ibb.co/BRj7DMP/Welcome-to-The-Book-Haven.png",
+    image:
+      "https://res.cloudinary.com/dgo7un75z/image/upload/v1772621712/Screenshot_2026-03-04_at_4.55.00_PM_ewfykx.png",
     techStack: [
       "React",
       "Node.js",
